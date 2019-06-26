@@ -55,3 +55,44 @@ sub wrap {
 }
 
 1;
+
+=encoding utf8
+
+=head1 NAME
+
+Mojo::Console::Output - write things to STDOUT / STDERR
+
+=head1 METHODS
+
+L<Mojo::Console::Output> inherits all methods from L<Mojo::Base> and implements
+the following new ones.
+
+=head2 error
+
+    $self->error("The program will stop here");
+
+=head2 info
+
+    $self->info("This is just an info message");
+
+=head2 line
+
+    $self->line("This message will not have a new line at the end");
+
+=head2 newline
+
+    $self->line("This message will have a new line at the end");
+
+=head2 success
+
+    $self->success("This is just a success message");
+
+=head2 warn
+
+    $self->success("This is just a warning message");
+
+=head2 wrap
+
+    $self->wrap("Message", "color", 1/0);
+
+=cut

@@ -6,7 +6,7 @@ use List::Util qw(any none);
 use Mojo::Console::Input;
 use Mojo::Console::Output;
 
-our $VERSION = '0.0.1';
+our $VERSION = '0.0.2';
 
 has 'input' => sub { Mojo::Console::Input->new };
 has 'max_attempts' => 10;
@@ -107,3 +107,99 @@ sub warn {
 }
 
 1;
+
+=encoding utf8
+
+=head1 NAME
+
+Mojo::Console - Extend Mojolicious::Command to be able to ask for things from command line
+
+=head1 SYNOPSIS
+
+    package MyApp::Command::helloworld;
+    use Mojo::Base 'Mojo::Console';
+
+    sub run {
+        my $self = shift;
+
+        my $name = $self->ask('What is your name?');
+        my $gender = $self->choice('Are you a male or a female?', ['male', 'female']);
+        my $bool = $self->confirm("Do you have a cat?");
+
+        $self->line("Hi $name\n");
+        $self->line("We found out that you are a $gender ");
+
+        if ($bool) {
+            $self->line("and you have a cat");
+        } else {
+            $self->line("and you don't have a cat");
+        }
+
+        if ($self->confirm("Would you like an icecream?")) {
+            $self->success("Thanks");
+        } else {
+            $self->error("Oh no!");
+        }
+
+        $self->info("You got here because you took an icecream");
+    }
+
+    1;
+
+=head1 DESCRIPTION
+
+L<Mojo::Console> is an extension of L<Mojolicious::Command>
+
+=head1 ATTRIBUTES
+
+L<Mojo::Console> inherits all attributes from L<Mojolicious::Command>.
+
+=head1 METHODS
+
+L<Mojo::Console> inherits all methods from L<Mojolicious::Command> and implements
+the following new ones.
+
+=head2 ask
+
+    my $answer = $self->ask('What is your name?');
+    my $required_answer = $self->ask('What is your name?', 1); # this will ask for an answer maximum 10 times and will exit in case the answer is empty
+
+=head2 confirm
+
+    my $bool = $self->confirm("Are you sure?");
+    my $bool_with_default_answer = $self->confirm("Are you sure?", 'yes');
+
+=head2 choice
+
+    my $choice = $self->choice('Are you a male or a female?', ['male', 'female']);
+    my $choice_with_default_answer = $self->choice('Are you a male or a female?', ['male', 'female'], 'male');
+
+=head2 error
+
+    $self->error("The program will stop here");
+
+=head2 info
+
+    $self->info("This is just an info message");
+
+=head2 line
+
+    $self->line("This message will not have a new line at the end");
+
+=head2 newline
+
+    $self->line("This message will have a new line at the end");
+
+=head2 success
+
+    $self->success("This is just a success message");
+
+=head2 warn
+
+    $self->success("This is just a warning message");
+
+=head1 SEE ALSO
+
+L<Mojolicious::Command>, L<Mojolicious>, L<Mojolicious::Guides>, L<https://mojolicious.org>.
+
+=cut
