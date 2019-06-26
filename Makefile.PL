@@ -10,7 +10,7 @@ WriteMakefile(
     AUTHOR           => q{Adrian Crisan <adrian.crisan88@gmail.com>},
     VERSION_FROM     => 'lib/Mojo/Console.pm',
     ABSTRACT_FROM    => 'lib/Mojo/Console.pm',
-    LICENSE          => 'artistic_2',
+    LICENSE          => 'mit',
     PL_FILES         => {},
     MIN_PERL_VERSION => 5.006,
     CONFIGURE_REQUIRES => {
@@ -26,10 +26,20 @@ WriteMakefile(
         'Term::ANSIColor' => 0,
     },
     META_MERGE   => {
+        no_index       => {directory => ['t']},
         resources => {
-            repository  =>  'https://github.com/crlcu/mojo-console',
+            bugtracker => {
+                web => 'https://github.com/crlcu/mojo-console/issues'
+            },
+            license    => ['https://opensource.org/licenses/MIT'],
+            repository => {
+                type => 'git',
+                url  => 'https://github.com/crlcu/mojo-console.git',
+                web  => 'https://github.com/crlcu/mojo-console',
+            },
         },
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'Mojo-Console-*' },
+    test      => {TESTS => 't/*.t'}
 );
