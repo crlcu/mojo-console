@@ -6,7 +6,7 @@ use List::Util qw(any none);
 use Mojo::Console::Input;
 use Mojo::Console::Output;
 
-our $VERSION = '0.0.5';
+our $VERSION = '0.0.6';
 
 has 'input' => sub { Mojo::Console::Input->new };
 has 'max_attempts' => 10;
@@ -205,6 +205,10 @@ the following new ones.
 =head2 newline
 
     $self->line("This message will have a new line at the end");
+
+=head2 required
+
+    $self->required->ask('What is your name?');
 
 =head2 success
 
