@@ -11,3 +11,6 @@ Revision history for Mojo::Console
 
 0.0.4   2019-09-19
         Default value for ask method
+
+0.0.5   2019-09-19
+        Fix MANIFEST
