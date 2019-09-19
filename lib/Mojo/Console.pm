@@ -6,7 +6,7 @@ use List::Util qw(any none);
 use Mojo::Console::Input;
 use Mojo::Console::Output;
 
-our $VERSION = '0.0.6';
+our $VERSION = '0.0.7';
 
 has 'input' => sub { Mojo::Console::Input->new };
 has 'max_attempts' => 10;
